@@ -7,8 +7,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    CopyrightBlock: typeof import('./src/components/general/CopyrightBlock.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
     ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDivider: typeof import('element-plus/es')['ElDivider']
     ElFooter: typeof import('element-plus/es')['ElFooter']
     ElHeader: typeof import('element-plus/es')['ElHeader']
     ElIcon: typeof import('element-plus/es')['ElIcon']
@@ -17,7 +19,11 @@ declare module '@vue/runtime-core' {
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    IBookingFacebookIcon: typeof import('~icons/booking/facebook-icon')['default']
+    IBookingInstagramIcon: typeof import('~icons/booking/instagram-icon')['default']
+    IBookingLinkedinIcon: typeof import('~icons/booking/linkedin-icon')['default']
     IBookingSendIcon: typeof import('~icons/booking/send-icon')['default']
+    IBookingTwitterIcon: typeof import('~icons/booking/twitter-icon')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
     IconEcosystem: typeof import('./src/components/icons/IconEcosystem.vue')['default']
@@ -25,6 +31,7 @@ declare module '@vue/runtime-core' {
     IconTooling: typeof import('./src/components/icons/IconTooling.vue')['default']
     MainFooter: typeof import('./src/components/general/MainFooter.vue')['default']
     MainHeader: typeof import('./src/components/general/MainHeader.vue')['default']
+    NewsletterBlock: typeof import('./src/components/general/NewsletterBlock.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheWelcome: typeof import('./src/components/TheWelcome.vue')['default']

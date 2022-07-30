@@ -1,25 +1,5 @@
 <template>
-  <div class="newsletter__wrapper">
-    <div class="newsletter__text">
-      <p class="newsletter__title">Newsletter</p>
-      <p class="newsletter__description">Stay Upto Date</p>
-    </div>
-
-    <div class="newsletter__subscribe">
-      <el-input
-        class="newsletter__subscribe-input"
-        v-model="emailForSubscribe"
-        type="email"
-        placeholder="Your Email..."
-      />
-      <el-button class="newsletter__subscribe-submit" circle>
-        <el-icon :size="26">
-          <i-booking-send-icon />
-        </el-icon>
-      </el-button>
-    </div>
-  </div>
-
+  <NewsletterBlock />
   <div class="main-footer__wrapper">
     <section class="main-footer__links">
       <div class="main-footer__sources-links">
@@ -29,110 +9,96 @@
           eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
         <div class="main-footer__mobile-links">
-          <a class="mobile-link mobile-link--play-store" href="#">PlayStore</a>
-          <a class="mobile-link mobile-link--app-store" href="#">AppleStore</a>
+          <a
+            class="mobile-link mobile-link--play-store"
+            href="https://play.google.com/"
+            target="_blank"
+            >PlayStore</a
+          >
+          <a
+            class="mobile-link mobile-link--app-store"
+            href="https://www.apple.com/ru/app-store/"
+            target="_blank"
+            >AppleStore</a
+          >
         </div>
       </div>
       <div class="main-footer__links-block">
         <p class="links-block__title">Company</p>
-        <a href="#" class="links-block__link">About Us</a>
-        <a href="#" class="links-block__link">Legal Information</a>
-        <a href="#" class="links-block__link">Contact Us</a>
-        <a href="#" class="links-block__link">Blogs</a>
+        <a class="links-block__link" href="#">About Us</a>
+        <a class="links-block__link" href="#">Legal Information</a>
+        <a class="links-block__link" href="#">Contact Us</a>
+        <a class="links-block__link" href="#">Blogs</a>
       </div>
       <div class="main-footer__links-block">
         <p class="links-block__title">Help center</p>
-        <a href="#" class="links-block__link">Find a Property</a>
-        <a href="#" class="links-block__link">How To Host?</a>
-        <a href="#" class="links-block__link">Why Us?</a>
-        <a href="#" class="links-block__link">FAQs</a>
-        <a href="#" class="links-block__link">Rental Guides</a>
+        <a class="links-block__link" href="#">Find a Property</a>
+        <a class="links-block__link" href="#">How To Host?</a>
+        <a class="links-block__link" href="#">Why Us?</a>
+        <a class="links-block__link" href="#">FAQs</a>
+        <a class="links-block__link" href="#">Rental Guides</a>
       </div>
       <div class="main-footer__links-block">
         <p class="links-block__title">Contact info</p>
-        <a href="#" class="links-block__link">Phone: 1234567890</a>
-        <a href="#" class="links-block__link">Email: company@email.com</a>
-        <a href="#" class="links-block__link"
+        <a class="links-block__link" href="tel:+1234567890"
+          >Phone: 1234567890</a
+        >
+        <a class="links-block__link" href="mailto:company@email.com"
+          >Email: company@email.com</a
+        >
+        <a class="links-block__link" href="#"
           >Location: 100 Smart Street, LA, USA</a
         >
-        <div class="main-footer__social-links"></div>
+        <div class="main-footer__social-links">
+          <a class="social-link" href="https://facebook.com/" target="_blank">
+            <el-icon :size="24">
+              <i-booking-facebook-icon />
+            </el-icon>
+          </a>
+          <a class="social-link" href="https://twitter.com/" target="_blank">
+            <el-icon :size="24">
+              <i-booking-twitter-icon />
+            </el-icon>
+          </a>
+          <a
+            class="social-link"
+            href="https://www.instagram.com/"
+            target="_blank"
+          >
+            <el-icon :size="24">
+              <i-booking-instagram-icon />
+            </el-icon>
+          </a>
+          <a
+            class="social-link"
+            href="https://www.linkedin.com/"
+            target="_blank"
+          >
+            <el-icon :size="24">
+              <i-booking-linkedin-icon />
+            </el-icon>
+          </a>
+        </div>
       </div>
     </section>
-    <section class="main-footer__copyright"></section>
+
+    <CopyrightBlock />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
-const emailForSubscribe = ref("");
+import NewsletterBlock from "@/components/general/NewsletterBlock.vue";
+import CopyrightBlock from "@/components/general/CopyrightBlock.vue";
 </script>
 
 <style lang="sass">
-.newsletter__wrapper
-  padding: 30px 180px
-  height: 115px
-  display: flex
-  column-gap: 65px
-
-  background-color: $gray-background-color
-
-.newsletter__text
-  height: 50px
-  display: flex
-  flex-direction: column
-  justify-content: space-between
-
-.newsletter__title
-  color: $main-text-color
-  font-size: $fz18
-  line-height: 20px
-  font-weight: 700
-  text-transform: uppercase
-
-.newsletter__description
-  color: $main-text-color
-  font-size: $fz14
-  line-height: 20px
-  font-weight: 500
-
-.newsletter__subscribe
-  width: 100%
-  position: relative
-
-.newsletter__subscribe-input
-  height: 50px
-
-.newsletter__subscribe-input .el-input__wrapper
-  padding: 0 25px
-  border-radius: 25px
-
-.newsletter__subscribe-submit
-  height: 50px
-  width: 50px
-  position: absolute
-  top: 0
-  right: 0
-  color: $white
-
-  background-color: $elements-background-color
-
-  & span
-    margin-left: 4px
-
-  &:hover, &:focus
-    color: $buttons-background
-    background-color: $elements-hover-background-color
-    border: none
-
 .main-footer__wrapper
-  padding: 85px 80px 0
-
   background-color: $additional-backgroud-color
 
   border-radius: 0 0 20px 20px
 
 .main-footer__links
+  padding: 85px 80px 200px
   display: flex
   justify-content: space-between
 
@@ -143,6 +109,7 @@ const emailForSubscribe = ref("");
   row-gap: 30px
 
 .main-footer__logo
+  width: fit-content
   color: $main-text-color
   font-size: $fz50
   line-height: 60.95px
@@ -177,6 +144,11 @@ const emailForSubscribe = ref("");
     color: $buttons-background
     background-color: $elements-background-color
 
+  &:active
+    color: $elements-background-color
+    background-color: $buttons-background
+    outline: 1px solid $elements-background-color
+
 .main-footer__links-block
   display: flex
   flex-direction: column
@@ -204,5 +176,20 @@ const emailForSubscribe = ref("");
     text-decoration: underline
 
 .links-block__link + *
-  margin-top: 5px
+  margin-top: 10px
+
+.main-footer__social-links
+  margin-top: 30px
+  display: flex
+  column-gap: 25px
+
+.social-link
+  color: $main-text-color
+  transition: .2s
+
+  &:hover
+    color: $elements-background-color
+
+  &:active
+    color: $black
 </style>
