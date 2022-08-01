@@ -3,7 +3,9 @@
     <el-header class="main-layout__header" height="70px">
       <MainHeader />
     </el-header>
-    <el-main>Main</el-main>
+    <el-main class="main-layout__main-content">
+      <RouterView />
+    </el-main>
     <el-footer class="main-layout__footer" height="730px">
       <MainFooter />
     </el-footer>
@@ -16,9 +18,6 @@ import MainFooter from "@/components/general/MainFooter.vue";
 </script>
 
 <style lang="sass" scoped>
-.main-layout__header
-  padding: 0
-
-.main-layout__footer
+.main-layout__header, .main-layout__main-content, .main-layout__footer
   padding: 0
 </style>
