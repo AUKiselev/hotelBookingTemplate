@@ -1,39 +1,56 @@
 <template>
-  <div class="latest-item__wrapper">
+  <div
+    class="latest-item__wrapper"
+    :style="{
+      background: `url(${props.selectedItem.image}) no-repeat center/100% 100%`,
+    }"
+  >
     <el-button
       class="latest-item__bookmark-button"
       :class="{
         'latest-item__bookmark-button--is-favorite': isFavorite,
       }"
+      @click="changeIsFavorite"
     >
       <el-icon :size="26">
         <i-booking-bookmark-button />
       </el-icon>
     </el-button>
-    <div class="latest-item__miniature"></div>
-    <router-link class="latest-item__title" to="#"
-      >Well Furnished Apartment</router-link
-    >
-    <p class="latest-item__address">100 Smart Street, LA, USA</p>
+    <router-link
+      class="latest-item__miniature"
+      to="#"
+      :style="{
+        background: `url(${props.selectedItem.author.avatar}) no-repeat center/100% 100%`,
+      }"
+    ></router-link>
+    <router-link class="latest-item__title" to="#">
+      {{ props.selectedItem.name }}
+    </router-link>
+    <p class="latest-item__address">{{ props.selectedItem.address }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-// defineProps({
-//   selectedItem: Object,
-// });
+import { ref } from "vue";
+import type { ILatestItem } from "@/models/latestItem";
 
-const isFavorite = computed(() => {
-  return false;
-});
+interface Props {
+  selectedItem: ILatestItem;
+}
+const props = defineProps<Props>();
+
+const isFavorite = ref(false);
+
+const changeIsFavorite = () => {
+  isFavorite.value = !isFavorite.value;
+};
 </script>
 
 <style lang="sass" scoped>
 .latest-item__wrapper
   padding: 20px
   min-height: 340px
-  max-width: 280px
+  width: 280px
   display: flex
   flex-direction: column
   justify-content: flex-start
@@ -42,14 +59,13 @@ const isFavorite = computed(() => {
   border-radius: 8px
 
 .latest-item__bookmark-button
-  margin: 0 0 auto 0
   padding: 0
   width: 26px
   height: 26px
   align-self: end
 
   color: $buttons-background
-  background-color: $buttons-background
+  background-color: $bookmark-background
 
   border: none
 
@@ -61,11 +77,15 @@ const isFavorite = computed(() => {
     color: $elements-background-color
 
 .latest-item__miniature
+  margin-top: 124px
   width: 70px
   height: 70px
-  justify-self: flex-end
   background-color: $miniature-background
   border-radius: 50px
+  transition: .2s
+
+  &:hover
+    border: 3px solid $black
 
 .latest-item__title
   color: $main-text-color

@@ -1,11 +1,25 @@
 import { defineStore } from "pinia";
-import type { IHotelCard } from "@/models/hotelCard";
+
+import type { ILatestItem } from "@/models/latestItem";
+import type { IFeaturedItem } from "@/models/featuredItem";
+
+import { getLatestItems, getFeaturedItems } from "@/api/api";
+// import type { IHotelCard } from "@/models/hotelCard";
 
 export const useHotelCards = defineStore({
   id: "hotelCards",
   state: () => ({
-    hotelCards: [] as IHotelCard[],
+    latestItems: [] as ILatestItem[],
+    featuredItems: [] as IFeaturedItem[],
   }),
   getters: {},
-  actions: {},
+  actions: {
+    async setLatestItems() {
+      this.latestItems = await getLatestItems();
+    },
+
+    async setFeaturedItems() {
+      this.featuredItems = await getFeaturedItems();
+    },
+  },
 });

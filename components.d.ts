@@ -7,8 +7,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BannerBlock: typeof import('./src/components/home/BannerBlock.vue')['default']
     CopyrightBlock: typeof import('./src/components/general/CopyrightBlock.vue')['default']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDatePicker: typeof import('element-plus/es')['ElDatePicker']
     ElDivider: typeof import('element-plus/es')['ElDivider']
@@ -21,7 +24,13 @@ declare module '@vue/runtime-core' {
     ElMain: typeof import('element-plus/es')['ElMain']
     ElMenu: typeof import('element-plus/es')['ElMenu']
     ElMenuItem: typeof import('element-plus/es')['ElMenuItem']
+    ElOption: typeof import('element-plus/es')['ElOption']
+    ElSelect: typeof import('element-plus/es')['ElSelect']
+    FeaturedItem: typeof import('./src/components/home/FeaturedItem.vue')['default']
+    FeaturedProperties: typeof import('./src/components/home/FeaturedProperties.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    IBookingBathroom: typeof import('~icons/booking/bathroom')['default']
+    IBookingBed: typeof import('~icons/booking/bed')['default']
     IBookingBookmarkButton: typeof import('~icons/booking/bookmark-button')['default']
     IBookingFacebookIcon: typeof import('~icons/booking/facebook-icon')['default']
     IBookingInstagramIcon: typeof import('~icons/booking/instagram-icon')['default']

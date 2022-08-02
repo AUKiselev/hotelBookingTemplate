@@ -1,14 +1,29 @@
 <template>
-  <section class="search-block__wrapper">
-    <span class="search-block__background-plug">Banner</span>
+  <section
+    class="search-block__wrapper"
+    :style="
+      banners.main
+        ? {
+            background: `url(${banners.main.image}) no-repeat center/100%`,
+          }
+        : { background: `#EFF0F2` }
+    "
+  >
     <div class="search-block__content">
       <h3 class="search-block__title">Find</h3>
       <el-form class="search-block__search-form" :model="searchForm">
         <el-form-item class="search-block__search-form-item" label="Location">
-          <el-input
+          <el-select
             v-model="searchForm.location"
             placeholder="Which city do you prefer?"
-          />
+          >
+            <el-option
+              v-for="location in locationsStore.locations"
+              :key="location.name"
+              :label="location.name"
+              :value="location.name"
+            />
+          </el-select>
         </el-form-item>
         <el-divider class="search-block__separator" direction="vertical" />
         <el-form-item
@@ -51,7 +66,18 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import { useLocationsStore } from "@/stores/locations";
+import { useBannersStore } from "@/stores/banners";
+
+const locationsStore = useLocationsStore();
+const bannersStore = useBannersStore();
+const { banners } = storeToRefs(bannersStore);
+
+onMounted(() => {
+  locationsStore.setLocations();
+});
 
 const searchForm = reactive({
   location: "",
@@ -65,20 +91,6 @@ const searchForm = reactive({
 .search-block__wrapper
   min-height: 580px
   position: relative
-
-  background-color: $additional-backgroud-color
-
-.search-block__background-plug
-  position: absolute
-  top: calc(50% - 70px)
-  left: 50%
-  transform: translate(-50%, -50%)
-
-  color: $gray-background-color
-  font-size: 120px
-  line-height: 146.28px
-  font-weight: 800
-  text-transform: uppercase
 
 .search-block__content
   min-width: 800px
