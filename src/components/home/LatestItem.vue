@@ -88,6 +88,7 @@ const changeIsFavorite = () => {
     border: 3px solid $black
 
 .latest-item__title
+  width: fit-content
   color: $main-text-color
   font-size: $fz17
   line-height: 48px

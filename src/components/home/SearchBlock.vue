@@ -51,10 +51,18 @@
         </el-form-item>
         <el-divider class="search-block__separator" direction="vertical" />
         <el-form-item class="search-block__search-form-item" label="Guests">
-          <el-input v-model="searchForm.guests" placeholder="Add Guests" />
+          <el-input
+            v-model="searchForm.guest"
+            placeholder="Add Guests"
+            type="number"
+          />
         </el-form-item>
         <el-form-item class="search-block__search-form-item">
-          <el-button class="search-block__search-form-submit" circle>
+          <el-button
+            class="search-block__search-form-submit"
+            @click="onSubmit(searchForm)"
+            circle
+          >
             <el-icon :size="20">
               <i-booking-search />
             </el-icon>
@@ -68,10 +76,15 @@
 <script setup lang="ts">
 import { reactive, onMounted } from "vue";
 import { storeToRefs } from "pinia";
+import router from "@/router/index";
 import { useLocationsStore } from "@/stores/locations";
 import { useBannersStore } from "@/stores/banners";
+import { useHotelCards } from "@/stores/hotelCards";
+import type { ISearchForm } from "@/models/searchForm";
 
 const locationsStore = useLocationsStore();
+const hotelCardsStore = useHotelCards();
+const { findResultItems } = storeToRefs(hotelCardsStore);
 const bannersStore = useBannersStore();
 const { banners } = storeToRefs(bannersStore);
 
@@ -79,12 +92,20 @@ onMounted(() => {
   locationsStore.setLocations();
 });
 
-const searchForm = reactive({
+const searchForm: ISearchForm = reactive({
   location: "",
   checkIn: "",
   checkOut: "",
-  guests: "",
+  guest: null,
 });
+
+const onSubmit = async (form: ISearchForm) => {
+  findResultItems.value.length = 0;
+  await hotelCardsStore.getAllSearchResult(form).then((resolve) => {
+    hotelCardsStore.getAllHotelsInfoFromSearch(resolve);
+    router.push({ name: "searchView" });
+  });
+};
 </script>
 
 <style lang="sass">

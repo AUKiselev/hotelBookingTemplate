@@ -3,27 +3,15 @@
   <div class="home-view__content">
     <LatestList />
     <BannerBlock
-      :title="
-        bannersStore.banners.second ? bannersStore.banners.second.title : ``
-      "
-      :description="
-        bannersStore.banners.second
-          ? bannersStore.banners.second.description
-          : ``
-      "
-      :background="
-        bannersStore.banners.second ? bannersStore.banners.second.image : ``
-      "
+      :title="banners.second?.title || `Static Description`"
+      :description="banners.second?.description || `Static Description`"
+      :background="banners.second?.image || ``"
     />
     <FeaturedProperties />
     <BannerBlock
-      :title="bannersStore.banners.last ? bannersStore.banners.last.title : ``"
-      :description="
-        bannersStore.banners.last ? bannersStore.banners.last.description : ``
-      "
-      :background="
-        bannersStore.banners.last ? bannersStore.banners.last.image : ``
-      "
+      :title="banners.last?.title || `Static Description`"
+      :description="banners.last?.description || `Static Description`"
+      :background="banners.last?.image || ``"
     />
   </div>
 </template>
@@ -35,8 +23,10 @@ import BannerBlock from "@/components/home/BannerBlock.vue";
 import FeaturedProperties from "@/components/home/FeaturedProperties.vue";
 import { useBannersStore } from "@/stores/banners";
 import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
 
 const bannersStore = useBannersStore();
+const { banners } = storeToRefs(bannersStore);
 
 onMounted(() => {
   bannersStore.setBanners();

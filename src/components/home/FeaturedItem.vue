@@ -1,23 +1,25 @@
 <template>
   <div class="featured-item__wrapper">
-    <div class="featured-item__carousel-wrapper">
-      <el-carousel class="featured-item__carousel">
+    <div
+      class="featured-item__carousel-wrapper"
+      @click="router.push({ name: `detailsView` })"
+    >
+      <el-carousel class="featured-item__carousel" :autoplay="false">
         <el-carousel-item
           class="featured-item__carousel-item"
-          v-for="item in props.selectedItem.images"
-          :key="item"
+          v-for="image in props.selectedItem.images"
+          :key="image"
           :style="{
-            background: `url(${item}) no-repeat center/100% 100%`,
+            background: `url(${image}) no-repeat center/100% 100%`,
           }"
         ></el-carousel-item>
       </el-carousel>
-      <!-- <div class="featured-item__plug"></div> -->
       <el-button
         class="bookmark-button featured-item__bookmark-button"
         :class="{
           'bookmark-button--is-favorite': isFavorite,
         }"
-        @click="changeIsFavorite"
+        @click.stop="changeIsFavorite"
       >
         <el-icon :size="26">
           <i-booking-bookmark-button />
@@ -28,7 +30,9 @@
       </p>
     </div>
     <div class="featured-item__about">
-      <p class="featured-item__title">{{ props.selectedItem.name }}</p>
+      <router-link class="featured-item__title" to="#">{{
+        props.selectedItem.name
+      }}</router-link>
       <p class="featured-item__address">{{ props.selectedItem.address }}</p>
       <div class="featured-item__conditions">
         <div class="featured-item__bed-counter">
@@ -54,6 +58,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import router from "@/router";
 import type { IFeaturedItem } from "@/models/featuredItem";
 
 interface Props {
@@ -68,16 +73,37 @@ const changeIsFavorite = () => {
 };
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
 .featured-item__wrapper
   min-width: 380px
 
 .featured-item__carousel-wrapper
   position: relative
   max-height: 340px
+  transition: .3s
+
+  &:hover
+    cursor: pointer
+    transform: scale(1.1)
 
 .featured-item__carousel
   border-radius: 12px
+
+  & .el-carousel__indicators
+    display: flex
+    column-gap: 5px
+    left: auto
+    right: 20px
+    bottom: 25px
+    transform: translateX(0)
+
+    & .el-carousel__indicator
+      padding: 0
+
+      & .el-carousel__button
+        height: 10px
+        width: 10px
+        border-radius: 50px
 
 .featured-item__bookmark-button
   position: absolute
@@ -101,10 +127,19 @@ const changeIsFavorite = () => {
   row-gap: 10px
 
 .featured-item__title
+  width: fit-content
   color: $main-text-color
   font-size: $fz18
   line-height: 21.94px
   font-weight: 700
+  text-decoration: none
+
+  transition: .3s
+
+  &:hover, &:focus
+    color: $black
+
+    text-decoration: underline
 
 .featured-item__address
   color: $elements-background-color

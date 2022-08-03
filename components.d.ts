@@ -48,6 +48,8 @@ declare module '@vue/runtime-core' {
     MainFooter: typeof import('./src/components/general/MainFooter.vue')['default']
     MainHeader: typeof import('./src/components/general/MainHeader.vue')['default']
     NewsletterBlock: typeof import('./src/components/general/NewsletterBlock.vue')['default']
+    ResultItem: typeof import('./src/components/search/ResultItem.vue')['default']
+    ResultList: typeof import('./src/components/search/ResultList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SearchBlock: typeof import('./src/components/home/SearchBlock.vue')['default']

@@ -8,7 +8,9 @@
     "
   >
     <h3 class="banner-block__title">{{ props.title }}</h3>
-    <p class="banner-block__description">{{ props.description }}</p>
+    <p class="banner-block__description">
+      {{ props.description }}
+    </p>
   </section>
 </template>
 
